@@ -14,7 +14,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //set whatever level you want
-    error_reporting(E_ALL ^ E_NOTICE);
+        error_reporting(E_ALL ^ E_NOTICE);
+
+        if (env('APP_ENV') === 'production') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
     }
 
     /**
